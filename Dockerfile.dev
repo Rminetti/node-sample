@@ -1,0 +1,16 @@
+FROM node:18-alpine
+
+WORKDIR app
+
+COPY ["package.json", "/app"]
+
+# This is run when the image is being created
+RUN npm install
+
+COPY . /app
+
+EXPOSE 8000
+
+# This is run when the container is started
+CMD ["npm", "start"]
+

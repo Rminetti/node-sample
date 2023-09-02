@@ -1,0 +1,19 @@
+# Define Image and container name
+IMAGE_NAME = node-sample
+CONTAINER_NAME = node-sample-server
+
+DOCKERFILE = Dockerfile.dev
+
+build:
+	@if [ -z $$(sudo docker images -q $(IMAGE_NAME)) ]; then \
+		echo "Docker image '$(IMAGE_NAME)' does not exist."; \
+		echo "Creating the Docker image..."; \
+		sudo docker build --tag $(IMAGE_NAME) -f $(DOCKERFILE) "."; \
+	else \
+		echo "Docker image '$(IMAGE_NAME)' already exists."; \
+	fi \
+
+# Run a Docker container based on the created image
+run: build
+	sudo docker run --rm -d -p 8080\:8000 --name $(CONTAINER_NAME) $(IMAGE_NAME)
+
