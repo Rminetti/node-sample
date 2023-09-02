@@ -1,0 +1,29 @@
+{
+  "name": "GeeksForGeeks",
+  "version": "1.0.0",
+  "description": "GeeksForGeeks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "author": "Rodrigo Minetti",
+  "license": "ISC",
+  "dependencies": {
+    "ronin-server": "^0.1.3",
+    "ronin-mocks": "^0.1.11"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sample"
+  },
+  "bugs": {
+    "url": "https://github.com/sample/issues"
+  },
+  "homepage": "https://github.com/sample#readme"
+}
