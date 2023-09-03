@@ -9,7 +9,7 @@ RUN npm install
 
 COPY . /app
 
-EXPOSE 8000
+EXPOSE 80
 
 # This is run when the container is started
 CMD ["npm", "start"]

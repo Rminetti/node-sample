@@ -15,5 +15,5 @@ build:
 
 # Run a Docker container based on the created image
 run: build
-	sudo docker run --rm -d -p 8080\:8000 --name $(CONTAINER_NAME) $(IMAGE_NAME)
+	sudo docker run --rm -d -p 8080\:80 --name $(CONTAINER_NAME) $(IMAGE_NAME)
 
