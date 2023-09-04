@@ -4,6 +4,8 @@ CONTAINER_NAME = node-sample-server
 
 DOCKERFILE = Dockerfile.dev
 
+ABSOLUTE_PATH := $(realpath .)
+
 build:
 	@if [ -z $$(sudo docker images -q $(IMAGE_NAME)) ]; then \
 		echo "Docker image '$(IMAGE_NAME)' does not exist."; \
@@ -14,6 +16,14 @@ build:
 	fi \
 
 # Run a Docker container based on the created image
+# --rm deletes the container when stoped
+# -d runs the container in detached mode (This option is not used)
+# -p specifies the a port to access the container (8080 is the local port / 80 is the container port)
+# --name assigns a name to the container
+# -v creates a named volume to persist some data independently of the container life cycle (sample-volume is the volume name, the path is where it maps on the container)
+# -v The second time this option is called, since it is used with an absolute path from our machie it created a bind mount. This will be usefull to refresh our code in real time.
+#		This step alone overrides the dependency installation.
+#		Docker evaulates all modules. If there are colitions then the one with the longer internal path wins. This is why the annonimous volume for our node modules takes precedence above the bind mount.
 run: build
-	sudo docker run --rm -d -p 8080\:80 --name $(CONTAINER_NAME) $(IMAGE_NAME)
+	sudo docker run --rm -p 8080\:80 --name $(CONTAINER_NAME) -v sample-volume:/app/final -v $(ABSOLUTE_PATH):/app $(IMAGE_NAME)
 

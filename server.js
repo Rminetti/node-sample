@@ -9,15 +9,10 @@ const app = express();
 
 app.use(bodyParser.json());
 
-app.get("/read/:file", async (req, res) => {
+app.get('/read/:file', async (req, res) => {
   const file = req.params.file;
   const filePath = path.join(__dirname, 'final', file + '.txt');
-  const tempFilePath = path.join(__dirname, 'temp', file + '.txt');
   const content = await fs.readFile(filePath, 'utf-8');
-
-  exists(tempFilePath, async (exist) => {
-    if (exist) console.log('Temp file exists for' + file);
-  });
 
   res.send(content);
 });
@@ -25,19 +20,14 @@ app.get("/read/:file", async (req, res) => {
 app.post('/persist', async (req, res) => {
   const { title, content } = req.body;
   const fileTitle = title.toLowerCase();
+  const filePath = path.join(__dirname, 'final', fileTitle + '.txt');
+  console.log('Persistent', filePath)
 
-  const tempFilePath = path.join(__dirname, 'temp', fileTitle + '.txt');
-  const finalFilePath = path.join(__dirname, 'final', fileTitle + '.txt');
-  
-  console.log("Temp", tempFilePath)
-  console.log("Persistent", finalFilePath)
-  await fs.writeFile(tempFilePath, 'Writing content on temp file ' + fileTitle);
-
-  exists(finalFilePath, async (exist) => {
+  exists(filePath, async (exist) => {
     if (exist) {
       res.status(204).end();
     } else {
-      await fs.writeFile(finalFilePath, content);
+      await fs.writeFile(filePath, content);
       res.status(201).json({ content });
     }
   })
