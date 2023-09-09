@@ -25,5 +25,5 @@ build:
 #		This step alone overrides the dependency installation.
 #		Docker evaulates all modules. If there are colitions then the one with the longer internal path wins. This is why the annonimous volume for our node modules takes precedence above the bind mount.
 run: build
-	sudo docker run --rm -p 8080\:80 --name $(CONTAINER_NAME) -v sample-volume:/app/final -v $(ABSOLUTE_PATH):/app $(IMAGE_NAME)
+	sudo docker run --rm -p 8080\:80 --name $(CONTAINER_NAME) -v $(ABSOLUTE_PATH):/app -v sample-volume:/app/final $(IMAGE_NAME)
 

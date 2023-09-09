@@ -4,10 +4,13 @@ const path = require('path');
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const pong = require('./util/pong');
 
 const app = express();
 
 app.use(bodyParser.json());
+
+app.get('/ping', (req, res) => { res.send(pong()) });
 
 app.get('/read/:file', async (req, res) => {
   const file = req.params.file;
@@ -33,5 +36,5 @@ app.post('/persist', async (req, res) => {
   })
 });
 
-app.listen(80);
+app.listen(process.env.PORT);
 

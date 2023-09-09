@@ -25,7 +25,5 @@ make -f make.run run
 
 ## Next Steps
 
-- Make a test Dockerfile and make file.
-- Add testing
-- Improve code sample
+- Integration tests
 

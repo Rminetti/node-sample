@@ -9,13 +9,8 @@ RUN npm install
 
 COPY . /app
 
-ENV PORT 80
-
-EXPOSE $PORT
-
-# This command adds an annonimous volume. In this case it will be used to prevent the node_modules of our application to be overwritten by a bind mount.
 VOLUME ["/app/node_modules"]
 
 # This is run when the container is started
-CMD ["npm", "start"]
+CMD ["npm", "test"]
 
