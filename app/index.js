@@ -14,7 +14,7 @@ app.get('/ping', (req, res) => { res.send(pong()) });
 
 app.get('/read/:file', async (req, res) => {
   const file = req.params.file;
-  const filePath = path.join(__dirname, 'final', file + '.txt');
+  const filePath = path.join(__dirname, '../final', file + '.txt');
   const content = await fs.readFile(filePath, 'utf-8');
 
   res.send(content);
@@ -23,7 +23,7 @@ app.get('/read/:file', async (req, res) => {
 app.post('/persist', async (req, res) => {
   const { title, content } = req.body;
   const fileTitle = title.toLowerCase();
-  const filePath = path.join(__dirname, 'final', fileTitle + '.txt');
+  const filePath = path.join(__dirname, '../final', fileTitle + '.txt');
   console.log('Persistent', filePath)
 
   exists(filePath, async (exist) => {
