@@ -7,10 +7,11 @@ To use this you do not need to have Node installed in your local machine.
 
 - [Installation](#installation)
 - [Next Steps](#next-steps)
+- [Testing](#testing)
 
 ## Installation
 
-Describe how to install your project, including any prerequisites.
+To instal and use this project you only need to run the folowing commands.
 
 ```bash
 # Clone the repository
@@ -23,7 +24,11 @@ cd your-project
 make -f make.run run
 ```
 
-## Next Steps
+## Testing
 
-- Integration tests
+To run the test run the following command
+
+ ```bash
+make -f make.test run
+ ```
 
